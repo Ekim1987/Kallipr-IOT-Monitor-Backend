@@ -1,0 +1,49 @@
+# ==============================
+# .NET / Visual Studio
+# ==============================
+
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains IDE
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# NuGet Packages
+*.nupkg
+packages/
+# The packages folder can be ignored if using PackageReference
+# Uncomment if using packages.config
+# /packages/*
+
+# ASP.NET Temporary Files
+*.log
+*.vspscc
+*.cache
+TestResults/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# SQLite files
+*.db
+*.db-journal
+
+# IIS / IIS Express
+IISExpress/
+*.vsix

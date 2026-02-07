@@ -1,0 +1,7 @@
+﻿services:
+  kallipr-iot-monitor-backend:
+    image: kallipr-iot-monitor-backend
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Kallipr-IOT-Monitor-Backend/Dockerfile
