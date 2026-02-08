@@ -62,17 +62,17 @@ dotnet run
 ```
 
 The API will start on:
-- HTTP: `http://localhost:5000`
-- HTTPS: `https://localhost:5001`
+- HTTP: `http://localhost:5264`
+- HTTPS: `https://localhost:7162`
 
 ### 5. Access API Documentation
 
-- **Swagger UI**: `http://localhost:5000/swagger`
+- **Swagger UI**: `http://localhost:5264/swagger`
 
 ### 6. Test the Health Endpoint
 
 ```bash
-curl http://localhost:5000/health
+curl http://localhost:5264/health
 ```
 
 Response:
