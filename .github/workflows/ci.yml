@@ -1,0 +1,60 @@
+name: CI Pipeline - Simple
+
+# Trigger on push to main/develop or on pull requests
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    name: Build and Test Backend
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout the code
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Setup .NET 8
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    # 3. Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # 4. Build the solution
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    # 5. Run tests with coverage
+    - name: Run tests
+      run: |
+        dotnet test \
+          --no-build \
+          --configuration Release \
+          --verbosity normal \
+          --logger "trx;LogFileName=test-results.trx" \
+          --collect:"XPlat Code Coverage"
+
+    # 6. Publish test results
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results
+        path: '**/test-results.trx'
+        reporter: dotnet-trx
+
+    # 7. Upload artifacts
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: '**/TestResults/**'
+        retention-days: 30
