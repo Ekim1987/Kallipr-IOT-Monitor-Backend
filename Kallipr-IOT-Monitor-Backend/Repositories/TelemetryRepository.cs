@@ -78,7 +78,23 @@ public class TelemetryRepository : ITelemetryRepository
     {
         try
         {
-            var sql = "SELECT * FROM telemetry_readings WHERE 1=1";
+            var sql = @"
+            SELECT 
+                id AS Id,
+                tenant_id AS TenantId,
+                device_id AS DeviceId,
+                external_id AS ExternalId,
+                type AS Type,
+                value AS Value,
+                unit AS Unit,
+                battery AS Battery,
+                battery_low AS BatteryLow,
+                signal AS Signal,
+                recorded_at AS RecordedAt,
+                created_at AS CreatedAt
+            FROM telemetry_readings 
+            WHERE 1=1";
+        
             var parameters = new DynamicParameters();
 
             if (!string.IsNullOrEmpty(deviceId))
