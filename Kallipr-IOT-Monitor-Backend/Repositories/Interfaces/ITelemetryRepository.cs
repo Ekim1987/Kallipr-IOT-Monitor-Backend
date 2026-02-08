@@ -1,6 +1,6 @@
-﻿using Kallipr_Web_Api.Models;
+﻿using Kallipr_IOT_Monitor_Backend.Models;
 
-namespace Kallipr_Web_Api.Repositories;
+namespace Kallipr_IOT_Monitor_Backend.Repositories;
 
 public interface ITelemetryRepository
 {

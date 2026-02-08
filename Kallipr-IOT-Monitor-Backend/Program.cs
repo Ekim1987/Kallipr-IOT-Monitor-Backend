@@ -1,11 +1,11 @@
 using System.Data;
 using FluentValidation;
-using Kallipr_Web_Api.Controllers;
-using Kallipr_Web_Api.Data;
-using Kallipr_Web_Api.Models;
-using Kallipr_Web_Api.Repositories;
-using Kallipr_Web_Api.Services;
-using Kallipr_Web_Api.Services.Interfaces;
+using Kallipr_IOT_Monitor_Backend.Controllers;
+using Kallipr_IOT_Monitor_Backend.Data;
+using Kallipr_IOT_Monitor_Backend.Models;
+using Kallipr_IOT_Monitor_Backend.Repositories;
+using Kallipr_IOT_Monitor_Backend.Services;
+using Kallipr_IOT_Monitor_Backend.Services.Interfaces;
 using Microsoft.Data.Sqlite;
 
 
@@ -23,8 +23,10 @@ builder.Services.AddScoped<ITelemetryRepository, TelemetryRepository>();
 builder.Services.AddScoped<ITelemetryService, TelemetryService>();
 
 var app = builder.Build();
-
-DatabaseInitializer.Initialize(app.Configuration);
+if (!app.Environment.IsEnvironment("Test"))
+{
+    DatabaseInitializer.Initialize(app.Configuration);
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -42,3 +44,5 @@ app.MapGet("/health", () => Results.Ok(new
 app.MapTelemetryEndpoints();
 
 app.Run();
+
+public partial class Program { }

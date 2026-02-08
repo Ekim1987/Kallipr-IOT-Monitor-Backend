@@ -1,9 +1,9 @@
-﻿using Kallipr_Web_Api.Models;
-using Kallipr_Web_Api.Repositories;
-using Kallipr_Web_Api.Services.Interfaces;
+﻿using Kallipr_IOT_Monitor_Backend.Models;
+using Kallipr_IOT_Monitor_Backend.Repositories;
+using Kallipr_IOT_Monitor_Backend.Services.Interfaces;
 using Microsoft.Data.Sqlite;
 
-namespace Kallipr_Web_Api.Services;
+namespace Kallipr_IOT_Monitor_Backend.Services;
 
 public class TelemetryService : ITelemetryService
 {

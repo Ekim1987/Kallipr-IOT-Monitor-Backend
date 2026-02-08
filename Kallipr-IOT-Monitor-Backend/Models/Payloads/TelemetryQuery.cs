@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Kallipr_Web_Api.Models.Payloads;
+namespace Kallipr_IOT_Monitor_Backend.Models.Payloads;
 
 public class TelemetryQuery
 {

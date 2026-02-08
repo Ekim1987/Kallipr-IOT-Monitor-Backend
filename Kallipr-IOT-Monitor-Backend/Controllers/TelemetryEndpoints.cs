@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
-using Kallipr_Web_Api.Models;
-using Kallipr_Web_Api.Models.Payloads;
-using Kallipr_Web_Api.Services.Interfaces;
+using Kallipr_IOT_Monitor_Backend.Models;
+using Kallipr_IOT_Monitor_Backend.Models.Payloads;
+using Kallipr_IOT_Monitor_Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Kallipr_Web_Api.Controllers;
+namespace Kallipr_IOT_Monitor_Backend.Controllers;
 
 public static class TelemetryEndpoints
 {

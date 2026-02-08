@@ -1,9 +1,9 @@
 ﻿using System.Data;
 using Dapper;
-using Kallipr_Web_Api.Models;
+using Kallipr_IOT_Monitor_Backend.Models;
 using Microsoft.Data.Sqlite;
 
-namespace Kallipr_Web_Api.Repositories;
+namespace Kallipr_IOT_Monitor_Backend.Repositories;
 
 public class TelemetryRepository : ITelemetryRepository
 {

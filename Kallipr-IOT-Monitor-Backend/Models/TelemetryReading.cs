@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using FluentValidation;
 
-namespace Kallipr_Web_Api.Models;
+namespace Kallipr_IOT_Monitor_Backend.Models;
 
 
 [Table("telemetry_readings")]
