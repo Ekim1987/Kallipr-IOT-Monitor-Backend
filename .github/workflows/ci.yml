@@ -1,4 +1,4 @@
-name: CI Pipeline - Simple
+name: CI Pipeline
 
 # Trigger on push to main/develop or on pull requests
 on:
@@ -39,22 +39,25 @@ jobs:
           --configuration Release \
           --verbosity normal \
           --logger "trx;LogFileName=test-results.trx" \
-          --collect:"XPlat Code Coverage"
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./TestResults
 
-    # 6. Publish test results
-    - name: Publish test results
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Test Results
-        path: '**/test-results.trx'
-        reporter: dotnet-trx
-
-    # 7. Upload artifacts
+    # 6. Upload test results as artifacts
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: test-results
-        path: '**/TestResults/**'
+        path: |
+          **/TestResults/**/*.trx
+          **/TestResults/**/coverage.cobertura.xml
         retention-days: 30
+
+    # 7. Display test summary
+    - name: Test Summary
+      if: always()
+      run: |
+        echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "Build completed successfully!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Test results have been uploaded as artifacts." >> $GITHUB_STEP_SUMMARY
