@@ -1,11 +1,16 @@
 name: CI Pipeline
 
-# Trigger on push to main/develop or on pull requests
 on:
   push:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
+
+# Add permissions for the test reporter
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
   build-and-test:
@@ -42,7 +47,16 @@ jobs:
           --collect:"XPlat Code Coverage" \
           --results-directory ./TestResults
 
-    # 6. Upload test results as artifacts
+    # 6. Publish test results (now with permissions)
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results
+        path: '**/test-results.trx'
+        reporter: dotnet-trx
+
+    # 7. Upload test results as artifacts
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
@@ -52,12 +66,3 @@ jobs:
           **/TestResults/**/*.trx
           **/TestResults/**/coverage.cobertura.xml
         retention-days: 30
-
-    # 7. Display test summary
-    - name: Test Summary
-      if: always()
-      run: |
-        echo "## Test Results" >> $GITHUB_STEP_SUMMARY
-        echo "Build completed successfully!" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "Test results have been uploaded as artifacts." >> $GITHUB_STEP_SUMMARY
